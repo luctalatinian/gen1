@@ -15,6 +15,16 @@ func init() {
 		sprite: image.NewImage(64, 64),
 	}
 	fill(Instance.sprite, 255)
+
+	sub := image.NewImage(32, 32)
+	fill(sub, 50)
+	image.Draw(sub, Instance.sprite, 0, 0)
+	fill(sub, 100)
+	image.Draw(sub, Instance.sprite, 32, 0)
+	fill(sub, 150)
+	image.Draw(sub, Instance.sprite, 0, 32)
+	fill(sub, 200)
+	image.Draw(sub, Instance.sprite, 32, 32)
 }
 
 // Debugger implements a state for testing image rendering.
@@ -44,7 +54,7 @@ func (d *Debugger) Update(in input.Input, i interface{}) core.State {
 // Render implements core.State::Render() for Debugger.
 func (d *Debugger) Render(rctx render.Context, i interface{}) {
 	frame := rctx.Frame()
-	fill(frame, 127)
+	fill(frame, 0)
 
 	image.Draw(d.sprite, frame, d.x, d.y)
 
