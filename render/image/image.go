@@ -58,7 +58,7 @@ func Draw(src, tgt *Image, x, y int) {
 
 // DrawSubregion maps the subregion of image src starting at (x0, y0), with width w and height h,
 // onto tgt at the position (x,y).
-func DrawSubregion(src, tgt *Image, x0, y0, w, h, uint, x, y int) {
+func DrawSubregion(src, tgt *Image, x0, y0, w, h, x, y int) {
 	if x > tgt.Width || y > tgt.Height || -x > w || -y > h {
 		return
 	}
@@ -76,7 +76,7 @@ func DrawSubregion(src, tgt *Image, x0, y0, w, h, uint, x, y int) {
 		rowOffset = -y
 	}
 
-	spos := subStride*(y0+rowOffset) + imgDepth*x0 + colOffset
+	spos := src.Stride*(y0+rowOffset) + imgDepth*x0 + colOffset
 	tpos := tgt.Stride*(y+rowOffset) + imgDepth*x + colOffset
 	for i := 0; i < rows-rowOffset; i++ {
 		copy(

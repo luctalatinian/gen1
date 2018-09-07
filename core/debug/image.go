@@ -56,7 +56,8 @@ func (d *Debugger) Render(rctx render.Context, i interface{}) {
 	frame := rctx.Frame()
 	fill(frame, 0)
 
-	image.Draw(d.sprite, frame, d.x, d.y)
+	image.DrawSubregion(d.sprite, frame, 16, 16, 32, 32, d.x, d.y)
+	image.Draw(d.sprite, frame, 160-64, 144-64)
 
 	rctx.Draw()
 }
