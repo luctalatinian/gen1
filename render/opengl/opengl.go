@@ -1,7 +1,7 @@
 package opengl
 
 import (
-	"luctalatinian/gen1/render/image"
+	"luctalatinian/gen1/render/img"
 	"runtime"
 	"unsafe"
 
@@ -21,7 +21,7 @@ type Renderer struct {
 	window  *glfw.Window
 	texture uint32
 
-	screen *image.Image
+	screen *img.Image
 }
 
 // NewRenderer initializes the GLFW and OpenGL environments.
@@ -43,7 +43,7 @@ func NewRenderer() (*Renderer, error) {
 	r := &Renderer{
 		window: window,
 
-		screen: image.NewImage(screenWidth, screenHeight),
+		screen: img.NewImage(screenWidth, screenHeight),
 	}
 	r.initGL()
 	return r, nil
@@ -55,7 +55,7 @@ func (r *Renderer) Window() *glfw.Window {
 }
 
 // Frame returns a pointer to the framebuffer.
-func (r *Renderer) Frame() *image.Image {
+func (r *Renderer) Frame() *img.Image {
 	return r.screen
 }
 

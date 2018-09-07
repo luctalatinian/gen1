@@ -1,4 +1,4 @@
-package image
+package img
 
 // All images are represented as RGBA.
 const imgDepth = 4

@@ -1,9 +1,9 @@
 package render
 
-import "luctalatinian/gen1/render/image"
+import "luctalatinian/gen1/render/img"
 
 // Context defines the most basic interface for rendering.
 type Context interface {
-	Frame() *image.Image
+	Frame() *img.Image
 	Draw()
 }

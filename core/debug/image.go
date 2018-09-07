@@ -4,7 +4,7 @@ import (
 	"luctalatinian/gen1/core"
 	"luctalatinian/gen1/input"
 	"luctalatinian/gen1/render"
-	"luctalatinian/gen1/render/image"
+	"luctalatinian/gen1/render/img"
 )
 
 // Instance is the singleton instance of Debugger.
@@ -12,24 +12,24 @@ var Instance *Debugger
 
 func init() {
 	Instance = &Debugger{
-		sprite: image.NewImage(64, 64),
+		sprite: img.NewImage(64, 64),
 	}
 	fill(Instance.sprite, 255)
 
-	sub := image.NewImage(32, 32)
+	sub := img.NewImage(32, 32)
 	fill(sub, 50)
-	image.Draw(sub, Instance.sprite, 0, 0)
+	img.Draw(sub, Instance.sprite, 0, 0)
 	fill(sub, 100)
-	image.Draw(sub, Instance.sprite, 32, 0)
+	img.Draw(sub, Instance.sprite, 32, 0)
 	fill(sub, 150)
-	image.Draw(sub, Instance.sprite, 0, 32)
+	img.Draw(sub, Instance.sprite, 0, 32)
 	fill(sub, 200)
-	image.Draw(sub, Instance.sprite, 32, 32)
+	img.Draw(sub, Instance.sprite, 32, 32)
 }
 
 // Debugger implements a state for testing image rendering.
 type Debugger struct {
-	sprite *image.Image
+	sprite *img.Image
 	x, y   int
 }
 
@@ -56,13 +56,13 @@ func (d *Debugger) Render(rctx render.Context, i interface{}) {
 	frame := rctx.Frame()
 	fill(frame, 0)
 
-	image.DrawSubregion(d.sprite, frame, 16, 16, 32, 32, d.x, d.y)
-	image.Draw(d.sprite, frame, 160-64, 144-64)
+	img.DrawSubregion(d.sprite, frame, 16, 16, 32, 32, d.x, d.y)
+	img.Draw(d.sprite, frame, 160-64, 144-64)
 
 	rctx.Draw()
 }
 
-func fill(im *image.Image, p byte) {
+func fill(im *img.Image, p byte) {
 	for i := 0; i < len(im.Pixels); i++ {
 		im.Pixels[i] = p
 	}
